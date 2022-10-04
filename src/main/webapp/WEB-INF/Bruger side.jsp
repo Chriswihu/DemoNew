@@ -12,7 +12,9 @@
 </head>
 <body>
 
-<h1> velkommen til din brugerside</h1>
+<h1> velkommen til din brugerside ${requestScope.navn}</h1>
+
+
 
 </body>
 </html>

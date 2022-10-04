@@ -31,18 +31,25 @@ public class LoginServlet extends HttpServlet
         String besked ="";
 
         if (opretNavn.equals("") || kode1.equals("") || kode2.equals("") ) {
-            besked = "huske alle felter skal udfyldes";
+            besked = "huske alle felter skal udfyldes, prøv igen";
 
             System.out.println("opret bruger ikke udfyldt korrekt");
            // log("opret bruger ikke udfyldt korrekt");
 
             request.setAttribute("besked", besked);
             request.getRequestDispatcher("index.jsp").forward(request,response);
+        }
 
+        if (!kode1.equals(kode2)) {
+
+            besked = "den angivende koder  er forskellige, prøv igen";
+
+            request.setAttribute("besked", besked);
+            request.getRequestDispatcher("index.jsp").forward(request,response);
 
         }
 
-
+        request.setAttribute("navn", opretNavn);
 
         request.getRequestDispatcher("WEB-INF/Bruger side.jsp").forward(request, response);
 
