@@ -129,6 +129,5 @@ public class LoginServlet extends HttpServlet
         request.getRequestDispatcher("WEB-INF/Bruger side.jsp").forward(request, response);
 
 
-
     }
 }
