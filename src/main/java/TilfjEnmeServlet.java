@@ -21,12 +21,35 @@ public class TilfjEnmeServlet extends HttpServlet
 
         if (emneListe == null) {   // det vil ske første jeg kommer her forbi
 
+            System.out.println("liste på session scopet fandtes ikke så den oprettes");
+
             emneListe = new TreeSet<>();
 
         }
+
+        Set<String> emneListeReq = (Set<String>) request.getAttribute("emneListeReq");
+
+        if (emneListeReq == null) {   // det vil ske første jeg kommer her forbi
+
+            System.out.println("liste på request scopet fandtes ikke så den oprettes");
+
+            emneListeReq = new TreeSet<>();
+
+        }
+
+
         String emne = request.getParameter("enme");
 
-        emneListe.add(emne);
+
+        emneListe.add(emne);   // session
+
+        emneListeReq.add(emne); // request
+
+
+
+
+
+        request.setAttribute("emneListeReq",emneListeReq);
 
         session.setAttribute("emneListe", emneListe);
         session.setAttribute("antal", emneListe.size());
