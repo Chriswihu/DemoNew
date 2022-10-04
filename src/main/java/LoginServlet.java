@@ -68,8 +68,12 @@ public class LoginServlet extends HttpServlet
 
         }
 
+        // alt er gået fint
+
+        HttpSession session = request.getSession();
 
 
+        request.setAttribute("sessionId", session.getId());
         request.getRequestDispatcher("WEB-INF/Bruger side.jsp").forward(request, response);
 
     }
@@ -106,6 +110,20 @@ public class LoginServlet extends HttpServlet
 
         }
 
+        if (brugerMap.containsKey(opretNavn)) {
+
+            besked = "en bruger med det navn findes allerede, prøv igen";
+            request.setAttribute("besked", besked);
+            request.getRequestDispatcher("index.jsp").forward(request,response);
+
+        }
+
+
+        inset(new Bruger(opretNavn, kode1));
+
+        HttpSession session = request.getSession();
+
+        request.setAttribute("sessionId", session.getId());
         request.setAttribute("navn", opretNavn);
 
         request.getRequestDispatcher("WEB-INF/Bruger side.jsp").forward(request, response);
