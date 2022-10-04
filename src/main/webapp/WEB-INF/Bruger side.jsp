@@ -27,6 +27,10 @@ dit sessionid er ${requestScope.sessionId}
 </form>
 
 du har nu tilføjer ${sessionScope.antal} emner til din liste
+<br>
+
+de tilføjede emer er følgende ${sessionScope.emneListe}
+
 
 <br>
 <br>
