@@ -11,6 +11,8 @@
 
 <h1> Login for eksistende brugere </h1>
 
+${requestScope.loginBesked}
+
 <form action="LoginServlet" method="get">  <%-- bemærk ingen stråstreg ! altså sådan en her ik. huske get som default "/"--%>
     <label for="navn">Navn:</label><br>
     <input type="text" id="navn" name="navn" value=""><br>

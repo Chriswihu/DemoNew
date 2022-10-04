@@ -45,6 +45,30 @@ public class LoginServlet extends HttpServlet
 
         //System.out.println("du ramte login servletten via Get" );
 
+        String loginBesked ="";
+
+        String navn = request.getParameter("navn");
+        String kode = request.getParameter("kode");
+
+        if (!brugerMap.containsKey(navn)) {
+
+            loginBesked = "En bruger med det navn findes ikke, prøv igen eller gå til opret";
+
+            request.setAttribute("loginBesked",loginBesked );
+            request.getRequestDispatcher("index.jsp").forward(request,response);
+
+        }
+
+        if (!brugerMap.get(navn).getKode().equals(kode)  ) {
+
+            loginBesked = "Koden er forkert, prøv igen";
+
+            request.setAttribute("loginBesked",loginBesked );
+            request.getRequestDispatcher("index.jsp").forward(request,response);
+
+        }
+
+
 
         request.getRequestDispatcher("WEB-INF/Bruger side.jsp").forward(request, response);
 
