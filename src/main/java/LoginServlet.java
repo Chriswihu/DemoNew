@@ -8,14 +8,42 @@ import java.util.TreeMap;
 @WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class LoginServlet extends HttpServlet
 {
-    Map<String, Brugere> brugereMap = new TreeMap<>();
+
+
+    Map<String, Bruger> brugerMap = new TreeMap<>();
+
+    public void init()
+    {
+        Bruger bruger1 = new Bruger("nik", "1");
+        Bruger bruger2 = new Bruger("palle", "1");
+
+        inset(bruger1);
+        inset(bruger2);
+        udskriv();
+
+    }
+
+    private void inset(Bruger bruger) {
+
+        brugerMap.put(bruger.getNavn(), bruger);
+
+    }
+
+    private void udskriv () {
+
+        for (Map.Entry<String, Bruger> entry : brugerMap.entrySet()) {
+
+            System.out.println(entry.toString());
+        }
+
+    }
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 
-        System.out.println("du ramte login servletten via Get");
+        //System.out.println("du ramte login servletten via Get" );
 
 
         request.getRequestDispatcher("WEB-INF/Bruger side.jsp").forward(request, response);
