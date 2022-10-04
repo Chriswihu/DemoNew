@@ -20,6 +20,19 @@ dit sessionid er ${requestScope.sessionId}
 <br>
 <br>
 
+<form action="TilføjEnmeServlet">
+    <label for="enme">Emen:</label><br>
+    <input type="text" id="enme" name="enme" value="Ølbong"><br>
+    <input type="submit" value="tilføj">
+</form>
+
+du har nu tilføjer ${sessionScope.antal} emner til din liste
+
+<br>
+<br>
+<br>
+<br>
+
 <form action="logudServlet">
 
     <input type="submit" value="log af">
