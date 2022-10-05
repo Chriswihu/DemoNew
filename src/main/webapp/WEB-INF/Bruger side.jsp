@@ -15,7 +15,7 @@
 
 <h1> velkommen til din brugerside ${requestScope.navn}</h1>
 
-dit sessionid er ${requestScope.sessionId}
+dit sessionid er ${sessionScope.sessionId}
 
 
 <br>
@@ -31,12 +31,19 @@ dit sessionid er ${requestScope.sessionId}
 du har nu tilføjer ${sessionScope.antal} emner til din liste
 <br>
 
-(Session : )  de tilføjede emer er følgende ${sessionScope.emneListe}
+<h1>Request </h1>
 <br>
 (request : ) de tilføjede emner er følgende ${requestScope.emneListeReq}
+<br>
+<br>
 
 
-udskriver listen via jstl:
+
+
+
+
+
+<h1>Session </h1>
 <br>
 
 <c:forEach items="${sessionScope.emneListe}" var="emne">
@@ -45,6 +52,22 @@ udskriver listen via jstl:
     <br>
 
 
+
+
+
+</c:forEach>
+
+<br>
+<br>
+<br>
+
+
+
+<h1>Contekst</h1>
+<c:forEach items="${applicationScope.stringSetContext}" var="emne">
+
+    ${emne}
+    <br>
 
 </c:forEach>
 

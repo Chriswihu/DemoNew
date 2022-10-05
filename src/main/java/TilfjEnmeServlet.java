@@ -2,8 +2,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -37,9 +36,26 @@ public class TilfjEnmeServlet extends HttpServlet
 
         }
 
+        ServletContext httpContext = getServletContext();
+//         Object stringSetContext = httpContext.getAttribute("stringSetContext");
+        Set<String> stringSetContext = (Set<String>) httpContext.getAttribute("stringSetContext");
+
+        if (stringSetContext == null) {
+
+            stringSetContext = new TreeSet<>();
+
+        }
+
+
+
+
+
+
 
         String emne = request.getParameter("enme");
 
+
+        stringSetContext.add(emne);
 
         emneListe.add(emne);   // session
 
@@ -49,6 +65,7 @@ public class TilfjEnmeServlet extends HttpServlet
 
 
 
+        httpContext.setAttribute("stringSetContext",stringSetContext);
         request.setAttribute("emneListeReq",emneListeReq);
 
         session.setAttribute("emneListe", emneListe);

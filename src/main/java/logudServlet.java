@@ -14,7 +14,7 @@ public class logudServlet extends HttpServlet
         log("bruger logger af");
         HttpSession session = request.getSession();
         session.invalidate();
-        request.getRequestDispatcher("WEB-INF/Bruger side.jsp").forward(request,response);
+        request.getRequestDispatcher("index.jsp").forward(request,response);
 
     }
 

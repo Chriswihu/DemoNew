@@ -73,7 +73,7 @@ public class LoginServlet extends HttpServlet
         HttpSession session = request.getSession();
 
 
-        request.setAttribute("sessionId", session.getId());
+        session.setAttribute("sessionId", session.getId());
         request.getRequestDispatcher("WEB-INF/Bruger side.jsp").forward(request, response);
 
     }
@@ -123,7 +123,7 @@ public class LoginServlet extends HttpServlet
 
         HttpSession session = request.getSession();
 
-        request.setAttribute("sessionId", session.getId());
+        session.setAttribute("sessionId", session.getId());
         request.setAttribute("navn", opretNavn);
 
         request.getRequestDispatcher("WEB-INF/Bruger side.jsp").forward(request, response);

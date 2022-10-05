@@ -36,6 +36,11 @@ ${requestScope.besked}
 </form>
 
 
+<form action="/action_page.php">
+
+    <input type="submit" value="Submit">
+</form>
+
 
 
 
