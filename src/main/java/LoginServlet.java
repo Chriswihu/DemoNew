@@ -14,29 +14,20 @@ public class LoginServlet extends HttpServlet
 
     public void init()
     {
+//        ServletContext servletContext = getServletContext();
+
+        Map<String, Bruger> contextBrugerMap = new TreeMap<>();
+
         Bruger bruger1 = new Bruger("nik", "1");
         Bruger bruger2 = new Bruger("palle", "1");
 
-        inset(bruger1);
-        inset(bruger2);
-        udskriv();
+        contextBrugerMap.put(bruger1.getNavn(), bruger1);
+        contextBrugerMap.put(bruger1.getNavn(), bruger1);
+
+        getServletContext().setAttribute("contextBrugerMap", contextBrugerMap);
 
     }
 
-    private void inset(Bruger bruger) {
-
-        brugerMap.put(bruger.getNavn(), bruger);
-
-    }
-
-    private void udskriv () {
-
-        for (Map.Entry<String, Bruger> entry : brugerMap.entrySet()) {
-
-            System.out.println(entry.toString());
-        }
-
-    }
 
 
     @Override
@@ -50,7 +41,9 @@ public class LoginServlet extends HttpServlet
         String navn = request.getParameter("navn");
         String kode = request.getParameter("kode");
 
-        if (!brugerMap.containsKey(navn)) {
+        Map<String , Bruger> contextBrugerMap = (Map<String, Bruger>) getServletContext().getAttribute("contextBrugerMap");
+
+        if (!contextBrugerMap.containsKey(navn)) {
 
             loginBesked = "En bruger med det navn findes ikke, prøv igen eller gå til opret";
 
@@ -59,7 +52,7 @@ public class LoginServlet extends HttpServlet
 
         }
 
-        if (!brugerMap.get(navn).getKode().equals(kode)  ) {
+        if (!contextBrugerMap.get(navn).getKode().equals(kode)  ) {
 
             loginBesked = "Koden er forkert, prøv igen";
 
@@ -81,6 +74,7 @@ public class LoginServlet extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        Map<String, Bruger> contextBrugerMap = (Map<String, Bruger>) getServletContext().getAttribute("contextBrugerMap");
 
         System.out.println("du ramte login servletten via Post");
 
@@ -110,7 +104,7 @@ public class LoginServlet extends HttpServlet
 
         }
 
-        if (brugerMap.containsKey(opretNavn)) {
+        if (contextBrugerMap.containsKey(opretNavn)) {
 
             besked = "en bruger med det navn findes allerede, prøv igen";
             request.setAttribute("besked", besked);
@@ -118,8 +112,9 @@ public class LoginServlet extends HttpServlet
 
         }
 
+        contextBrugerMap.put(opretNavn, new Bruger(opretNavn, kode1));
 
-        inset(new Bruger(opretNavn, kode1));
+        getServletContext().setAttribute("contextBrugerMap", contextBrugerMap);
 
         HttpSession session = request.getSession();
 

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: nbh
-  Date: 05/10/2022
-  Time: 13.51
+  User: chris
+  Date: 05-Oct-22
+  Time: 13:55
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,9 +12,7 @@
 </head>
 <body>
 
-
-<h1>   Her kan du se alle de emner folk har tilføjet ${applicationScope.stringSetContext} </h1>
-
+<h1>Her kan du se all de emner fol har tilføjet ${applicationScope.stringSetContext} </h1>
 
 </body>
 </html>
