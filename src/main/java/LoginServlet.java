@@ -10,21 +10,22 @@ public class LoginServlet extends HttpServlet
 {
 
 
-    Map<String, Bruger> brugerMap = new TreeMap<>();
+
+    Map<String, Konto> KontoMap = new TreeMap<>();
 
     public void init()
     {
 //        ServletContext servletContext = getServletContext();
 
-        Map<String, Bruger> contextBrugerMap = new TreeMap<>();
+        Map<String, Konto> contextKontoMap = new TreeMap<>();
 
-        Bruger bruger1 = new Bruger("nik", "1");
-        Bruger bruger2 = new Bruger("palle", "1");
+        Konto Konto1 = new Konto("nik", "1");
+        Konto Konto2 = new Konto("palle", "1");
 
-        contextBrugerMap.put(bruger1.getNavn(), bruger1);
-        contextBrugerMap.put(bruger1.getNavn(), bruger1);
+        contextKontoMap.put(Konto1.getNavn(), Konto1);
+        contextKontoMap.put(Konto1.getNavn(), Konto2);
 
-        getServletContext().setAttribute("contextBrugerMap", contextBrugerMap);
+        getServletContext().setAttribute("contextKontoMap", contextKontoMap);
 
     }
 
@@ -41,18 +42,18 @@ public class LoginServlet extends HttpServlet
         String navn = request.getParameter("navn");
         String kode = request.getParameter("kode");
 
-        Map<String , Bruger> contextBrugerMap = (Map<String, Bruger>) getServletContext().getAttribute("contextBrugerMap");
+        Map<String , Konto> contextKontoMap = (Map<String, Konto>) getServletContext().getAttribute("contextKontoMap");
 
-        if (!contextBrugerMap.containsKey(navn)) {
+        if (!contextKontoMap.containsKey(navn)) {
 
-            loginBesked = "En bruger med det navn findes ikke, prøv igen eller gå til opret";
+            loginBesked = "En Konto med det navn findes ikke, prøv igen eller gå til opret";
 
             request.setAttribute("loginBesked",loginBesked );
             request.getRequestDispatcher("index.jsp").forward(request,response);
 
         }
 
-        if (!contextBrugerMap.get(navn).getKode().equals(kode)  ) {
+        if (!contextKontoMap.get(navn).getKode().equals(kode)  ) {
 
             loginBesked = "Koden er forkert, prøv igen";
 
@@ -67,14 +68,14 @@ public class LoginServlet extends HttpServlet
 
 
         session.setAttribute("sessionId", session.getId());
-        request.getRequestDispatcher("WEB-INF/Bruger side.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/Konto side.jsp").forward(request, response);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        Map<String, Bruger> contextBrugerMap = (Map<String, Bruger>) getServletContext().getAttribute("contextBrugerMap");
+        Map<String, Konto> contextKontoMap = (Map<String, Konto>) getServletContext().getAttribute("contextKontoMap");
 
         System.out.println("du ramte login servletten via Post");
 
@@ -88,8 +89,8 @@ public class LoginServlet extends HttpServlet
         if (opretNavn.equals("") || kode1.equals("") || kode2.equals("") ) {
             besked = "huske alle felter skal udfyldes, prøv igen";
 
-            System.out.println("opret bruger ikke udfyldt korrekt");
-           // log("opret bruger ikke udfyldt korrekt");
+            System.out.println("opret Konto ikke udfyldt korrekt");
+           // log("opret Konto ikke udfyldt korrekt");
 
             request.setAttribute("besked", besked);
             request.getRequestDispatcher("index.jsp").forward(request,response);
@@ -104,24 +105,24 @@ public class LoginServlet extends HttpServlet
 
         }
 
-        if (contextBrugerMap.containsKey(opretNavn)) {
+        if (contextKontoMap.containsKey(opretNavn)) {
 
-            besked = "en bruger med det navn findes allerede, prøv igen";
+            besked = "en Konto med det navn findes allerede, prøv igen";
             request.setAttribute("besked", besked);
             request.getRequestDispatcher("index.jsp").forward(request,response);
 
         }
 
-        contextBrugerMap.put(opretNavn, new Bruger(opretNavn, kode1));
+        contextKontoMap.put(opretNavn, new Konto(opretNavn, kode1));
 
-        getServletContext().setAttribute("contextBrugerMap", contextBrugerMap);
+        getServletContext().setAttribute("contextKontoMap", contextKontoMap);
 
         HttpSession session = request.getSession();
 
         session.setAttribute("sessionId", session.getId());
         request.setAttribute("navn", opretNavn);
 
-        request.getRequestDispatcher("WEB-INF/Bruger side.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/Konto side.jsp").forward(request, response);
 
 
     }

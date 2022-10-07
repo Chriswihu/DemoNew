@@ -36,9 +36,9 @@ ${requestScope.besked}
 </form>
 
 
+<h1>login som administrator</h1>
 <form action="/action_page.php">
-
-    <input type="submit" value="Administrator Side">
+    <input type="submit" value="Administrator Login">
 </form>
 
 

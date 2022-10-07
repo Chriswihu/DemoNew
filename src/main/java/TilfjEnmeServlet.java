@@ -71,7 +71,7 @@ public class TilfjEnmeServlet extends HttpServlet
         session.setAttribute("emneListe", emneListe);
         session.setAttribute("antal", emneListe.size());
 
-        request.getRequestDispatcher("WEB-INF/Bruger side.jsp").forward(request,response);
+        request.getRequestDispatcher("WEB-INF/Konto side.jsp").forward(request,response);
     }
 
     @Override

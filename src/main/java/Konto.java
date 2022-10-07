@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bruger //lav commit og lav om til Konto
+public class Konto //lav commit og lav om til Konto
 {
     private String navn;
     private String kode;
@@ -9,14 +9,14 @@ public class Bruger //lav commit og lav om til Konto
 
     private List<String> transaktioner = new ArrayList<>();
 
-    public Bruger(String navn, String kode)
+    public Konto(String navn, String kode)
     {
         this.navn = navn;
         this.kode = kode;
         this.saldo = 0;
     }
 
-    public Bruger(String navn, String kode, int saldo)
+    public Konto(String navn, String kode, int saldo)
     {
         this.navn = navn;
         this.kode = kode;
