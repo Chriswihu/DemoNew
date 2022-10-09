@@ -11,8 +11,16 @@
     <title>Admin</title>
 </head>
 <body>
+<br>
+<h1>Login, kun for Administratorer!</h1>
 
-<h1>Her kan du se all de emner fol har tilføjet ${applicationScope.stringSetContext} </h1>
+<form action="AdminLoginServlet" method="get">  <%-- bemærk ingen stråstreg ! altså sådan en her ik. huske get som default "/"--%>
+    <label for="navn">Navn:</label><br>
+    <input type="text" id="navn" name="navn" value=""><br>
+    <label for="kode">indtask kode:</label><br>
+    <input type="text" id="kode" name="kode" value=""><br><br>
+    <input type="submit" value="login">
+</form>
 
 </body>
 </html>

@@ -8,9 +8,6 @@ import java.util.TreeMap;
 @WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class LoginServlet extends HttpServlet
 {
-
-
-
     Map<String, Konto> KontoMap = new TreeMap<>();
 
     public void init()
@@ -65,7 +62,6 @@ public class LoginServlet extends HttpServlet
         // alt er gået fint
 
         HttpSession session = request.getSession();
-
 
         session.setAttribute("sessionId", session.getId());
         request.getRequestDispatcher("WEB-INF/Konto side.jsp").forward(request, response);

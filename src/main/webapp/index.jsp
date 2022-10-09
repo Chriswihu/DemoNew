@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - huskeappen</title>
+    <title>Data Bank</title>
 </head>
 <body>
-<h1><%= "Velkommen til din online huskesedel!" %>
+<h1><%= "Velkommen til din online Data Bank!" %>
 </h1>
 <br/>
 
@@ -37,7 +37,7 @@ ${requestScope.besked}
 
 
 <h1>login som administrator</h1>
-<form action="/action_page.php">
+<form action="AdminLoginServlet">
     <input type="submit" value="Administrator Login">
 </form>
 
