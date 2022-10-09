@@ -2,6 +2,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.*;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -12,7 +13,30 @@ public class AdminLoginServlet extends HttpServlet
 
     public void init()
     {
+        String sql = "select * from AdminKonto";
+
         Map<String, Konto> contextAdminMap = new TreeMap<>();
+//        Konto u;
+//
+//
+//        try (Connection con = ConnectionConfig.getConnection();
+//             PreparedStatement ps = con.prepareStatement(sql)) {
+//
+//            ResultSet resultSet = ps.executeQuery();
+//
+//            while (resultSet.next()) {
+//                Integer ID = resultSet.getInt("idAdminData");
+//                String AdminName = resultSet.getString("AdminNavn");
+//                String AdminKode = resultSet.getString("AdminKode");
+//
+//                u = new Konto(AdminName, AdminKode);
+//
+//                contextAdminMap.put(ID, u);
+//
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
         Konto admin1 = new Konto("chris", "3");
 

@@ -35,6 +35,10 @@ ${requestScope.besked}
     <input type="submit" value="opret">
 </form>
 
+<h1>opret ny Konto</h1>
+<form action="OpretKontoServlet">
+    <input type="submit" value="Til nye Brugere">
+</form>
 
 <h1>login som administrator</h1>
 <form action="AdminLoginServlet">

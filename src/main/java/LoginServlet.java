@@ -2,6 +2,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -12,15 +16,36 @@ public class LoginServlet extends HttpServlet
 
     public void init()
     {
-//        ServletContext servletContext = getServletContext();
+        Map<Integer, Konto> contextKontoMap = new TreeMap<>();
+        Konto u;
 
-        Map<String, Konto> contextKontoMap = new TreeMap<>();
+        String sql = "select * from AdminKonto";
 
-        Konto Konto1 = new Konto("nik", "1");
-        Konto Konto2 = new Konto("palle", "1");
+        try (Connection con = ConnectionConfig.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
-        contextKontoMap.put(Konto1.getNavn(), Konto1);
-        contextKontoMap.put(Konto1.getNavn(), Konto2);
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                int ID = resultSet.getInt("idKontoData");
+                String KontoName = resultSet.getString("KontoNavn");
+                String KontoKode = resultSet.getString("KontoKode");
+                int KontoSaldo = resultSet.getInt("KontoSaldo");
+
+                u = new Konto(KontoName, KontoKode, KontoSaldo);
+
+                contextKontoMap.put(ID, u);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+//        Konto Konto1 = new Konto("nik", "1");
+//        Konto Konto2 = new Konto("palle", "1");
+//
+//        contextKontoMap.put(Konto1.getNavn(), Konto1);
+//        contextKontoMap.put(Konto1.getNavn(), Konto2);
 
         getServletContext().setAttribute("contextKontoMap", contextKontoMap);
 

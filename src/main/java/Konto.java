@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Konto //lav commit og lav om til Konto
 {
+    private Integer ID;
     private String navn;
     private String kode;
     private int saldo;
@@ -48,6 +49,10 @@ public class Konto //lav commit og lav om til Konto
 
         }
     }
+//    public Integer getID()
+//    {
+//        return id;
+//    }
 
     public String getNavn()
     {

@@ -1,7 +1,8 @@
+import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionConfig {
-    public static java.sql.Connection getConnection() {
+    public static Connection getConnection() {
         java.sql.Connection connection = null;
         String url = "jdbc:mysql://localhost:3306/db-bankdata?serverTimezone=CET&useSSL=false";
         String user = "root";

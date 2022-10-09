@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-@WebServlet("LoginServlet")
+@WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class InsertData extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class InsertData extends HttpServlet {
             PreparedStatement st = con.prepareStatement("insert into KontoData values(?, ?, ?)");
             st.setString(1, request.getParameter("KontoNavn"));
             st.setString(2, request.getParameter("KontoKode"));
-            st.setInt(3, Integer.valueOf(request.getParameter("KontoSaldo")));
+            st.setString(3, request.getParameter("KontoKode"));
 
             st.executeUpdate();
 
